@@ -1,0 +1,139 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-sensor-type
+      author: v.piha
+      changes:
+        - createTable:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 002-create-sensor-unit
+      author: v.piha
+      changes:
+        - createTable:
+            tableName: sensor_unit
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(10)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 003-create-role
+      author: v.piha
+      changes:
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 004-create-app-user
+      author: v.piha
+      changes:
+        - createTable:
+            tableName: app_user
+            columns:
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_role
+                    references: role(id)
+
+  - changeSet:
+      id: 005-create-sensor
+      author: v.piha
+      changes:
+        - createTable:
+            tableName: sensor
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: range_from
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: range_to
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_sensor_type
+                    references: sensor_type(id)
+              - column:
+                  name: unit_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_sensor_unit
+                    references: sensor_unit(id)
+              - column:
+                  name: location
+                  type: VARCHAR(40)
+              - column:
+                  name: description
+                  type: VARCHAR(200)

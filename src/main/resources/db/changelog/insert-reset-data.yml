@@ -1,0 +1,92 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-insert-sensor-types-units-and-users
+      author: v.piha
+      changes:
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: Pressure
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: Voltage
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: Temperature
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: Humidity
+
+        - insert:
+            tableName: sensor_unit
+            columns:
+              - column:
+                  name: name
+                  value: bar
+        - insert:
+            tableName: sensor_unit
+            columns:
+              - column:
+                  name: name
+                  value: voltage
+        - insert:
+            tableName: sensor_unit
+            columns:
+              - column:
+                  name: name
+                  value: "°С"
+        - insert:
+            tableName: sensor_unit
+            columns:
+              - column:
+                  name: name
+                  value: "%"
+
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: ADMINISTRATOR
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: VIEWER
+
+        - insert:
+            tableName: app_user
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+                  value: '$2a$10$IUm1I0Ow6EPgXw14mONTO.7edZsDRWpoCzPXigvsVst2QMh5Kra5y'
+              - column:
+                  name: role_id
+                  valueNumeric: 1
+        - insert:
+            tableName: app_user
+            columns:
+              - column:
+                  name: username
+                  value: user
+              - column:
+                  name: password
+                  value: '$2a$10$eN0P3ODTbGzjWzRwTfzA3e6lJQZ9yl5HyGY06W.59DL.5J4Znm8DO'
+              - column:
+                  name: role_id
+                  valueNumeric: 2
